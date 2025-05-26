@@ -1,5 +1,82 @@
-<!-- index.html -->
-<h1>Voice Samples</h1>
-<audio controls>
-  <source src="samples/Trump.wav" type="audio/wav" />
-</audio>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Samples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .audio-list {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .audio-item {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .audio-title {
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    audio {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Voice Samples</h1>
+  <div class="audio-list" id="audioList"></div>
+
+  <script>
+    // Manually list your audio file names
+    const audioFiles = [
+      'Trump.wav',
+      'Obama.wav',
+      'Biden.wav',
+      'Duke.mp3'
+    ];
+
+    const audioList = document.getElementById('audioList');
+
+    audioFiles.forEach(file => {
+      const item = document.createElement('div');
+      item.className = 'audio-item';
+
+      const title = document.createElement('div');
+      title.className = 'audio-title';
+      title.textContent = file;
+
+      const audio = document.createElement('audio');
+      audio.controls = true;
+
+      const source = document.createElement('source');
+      source.src = `samples/${file}`;
+      source.type = 'audio/wav';
+
+      audio.appendChild(source);
+      item.appendChild(title);
+      item.appendChild(audio);
+      audioList.appendChild(item);
+    });
+  </script>
+</body>
+</html>
+
+
