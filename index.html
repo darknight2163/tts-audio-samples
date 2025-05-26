@@ -8,33 +8,28 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #f9f9f9;
+      background: #f2f2f2;
     }
-
     h1 {
       text-align: center;
       color: #333;
     }
-
     .audio-list {
       max-width: 600px;
       margin: 0 auto;
     }
-
     .audio-item {
-      background: #fff;
+      background: white;
       padding: 15px;
       margin-bottom: 15px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
     .audio-title {
       font-size: 1.1em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #444;
     }
-
     audio {
       width: 100%;
     }
@@ -45,13 +40,22 @@
   <div class="audio-list" id="audioList"></div>
 
   <script>
-    // Manually list your audio file names
     const audioFiles = [
       'Trump.wav',
-      'Obama.wav',
+      'Obama.mp3',
       'Biden.wav',
-      'Duke.mp3'
+      'Elon.mp3'
     ];
+
+    const getMimeType = (filename) => {
+      const ext = filename.split('.').pop().toLowerCase();
+      switch (ext) {
+        case 'mp3': return 'audio/mpeg';
+        case 'wav': return 'audio/wav';
+        case 'ogg': return 'audio/ogg';
+        default: return 'audio/mpeg';
+      }
+    };
 
     const audioList = document.getElementById('audioList');
 
@@ -68,7 +72,7 @@
 
       const source = document.createElement('source');
       source.src = `samples/${file}`;
-      source.type = 'audio/wav';
+      source.type = getMimeType(file);
 
       audio.appendChild(source);
       item.appendChild(title);
@@ -78,5 +82,3 @@
   </script>
 </body>
 </html>
-
-
